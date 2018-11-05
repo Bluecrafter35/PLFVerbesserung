@@ -1,6 +1,7 @@
 package gui;
 
 import WeatherStation.WeatherStation;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,7 +26,8 @@ public class WeatherGUI extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tabWheater = new javax.swing.JTable();
@@ -40,13 +42,15 @@ public class WeatherGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tabWheater.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
                 {},
                 {},
                 {},
                 {}
             },
-            new String [] {
+            new String []
+            {
 
             }
         ));
@@ -55,14 +59,23 @@ public class WeatherGUI extends javax.swing.JFrame {
         jMenu1.setText("Stations");
 
         miAdd.setText("Add Weather Station");
-        miAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        miAdd.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 miAddActionPerformed(evt);
             }
         });
         jMenu1.add(miAdd);
 
         miRemove.setText("Remove Weather Station");
+        miRemove.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                miRemoveActionPerformed(evt);
+            }
+        });
         jMenu1.add(miRemove);
 
         jMenuBar1.add(jMenu1);
@@ -70,6 +83,13 @@ public class WeatherGUI extends javax.swing.JFrame {
         jMenu2.setText("Values");
 
         miSetTemp.setText("Set Temperature");
+        miSetTemp.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                miSetTempActionPerformed(evt);
+            }
+        });
         jMenu2.add(miSetTemp);
 
         miSetHum.setText("Set Humidity");
@@ -101,6 +121,34 @@ public class WeatherGUI extends javax.swing.JFrame {
             model.add(dlg.getWs());
         }
     }//GEN-LAST:event_miAddActionPerformed
+
+    private void miRemoveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miRemoveActionPerformed
+    {//GEN-HEADEREND:event_miRemoveActionPerformed
+        int[] indices = this.tabWheater.getSelectedRows();
+        if(indices.length!=0)
+        {
+            for(int i = indices.length-1;i>=0;i--)
+            {
+                model.remove(indices[i]);
+            }
+        }
+    }//GEN-LAST:event_miRemoveActionPerformed
+
+    private void miSetTempActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miSetTempActionPerformed
+    {//GEN-HEADEREND:event_miSetTempActionPerformed
+        try
+        {
+            int[] indices = this.tabWheater.getSelectedRows();
+            for(int i = indices.length-1;i>=0;i--)
+            {
+                float fl = Float.parseFloat(JOptionPane.showInputDialog(null, "Bitte neue Temperatur eingeben!"));
+                ((WeatherStation)model.getValueAt(indices[i], 0)).setTemp(fl);
+            }
+        }catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_miSetTempActionPerformed
 
     /**
      * @param args the command line arguments

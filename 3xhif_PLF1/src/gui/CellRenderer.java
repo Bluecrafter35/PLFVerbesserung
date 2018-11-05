@@ -58,10 +58,6 @@ public class CellRenderer implements TableCellRenderer
         }
         
         label.setOpaque(true);
-        if(isSelected)
-        {
-            label.setBackground(Color.LIGHT_GRAY);
-        }
         
         if(ws.getTemp()>25&&ws.getHumidity()<20)
         {
@@ -76,6 +72,10 @@ public class CellRenderer implements TableCellRenderer
             label.setBackground(Color.GREEN);
         }
         
+        if(isSelected)
+        {
+            label.setBackground(Color.LIGHT_GRAY);
+        }
         c = label;
         return c;
     }

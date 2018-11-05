@@ -5,6 +5,7 @@
  */
 package gui;
 
+import WeatherStation.Sortieren;
 import WeatherStation.WeatherStation;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
@@ -20,7 +21,15 @@ public class TabelModel extends AbstractTableModel
     
     public void add(WeatherStation ws)
     {
+        Sortieren sorter = new Sortieren();
         stations.add(ws);
+        stations.sort(sorter);
+        fireTableDataChanged();
+    }
+    
+    public void remove(int i)
+    {
+        stations.remove(i);
         fireTableDataChanged();
     }
     
@@ -29,16 +38,16 @@ public class TabelModel extends AbstractTableModel
         colnames = new String[numColumns];
         if(numColumns==4)
         {
-                colnames[0]="Place";
-                colnames[1]="SeaLevel";
-                colnames[2]="Temperatur";
-                colnames[3]= "Humidity";
+            colnames[0]="Place";
+            colnames[1]="SeaLevel";
+            colnames[2]="Temperatur";
+            colnames[3]= "Humidity";
         }
         else if(numColumns==3)
         {
-                colnames[0]="Place";
-                colnames[1]="Temperatur";
-                colnames[2]= "Humidity";
+            colnames[0]="Place";
+            colnames[1]="Temperatur";
+            colnames[2]= "Humidity";
         }
         else
         {
