@@ -6,6 +6,7 @@
 package gui;
 
 import WeatherStation.WeatherStation;
+import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -24,6 +25,7 @@ public class CellRenderer implements TableCellRenderer
         Component c=null;
         JLabel label = new JLabel();
         WeatherStation ws = (WeatherStation)value;
+        label.setBackground(Color.WHITE);
         if(jtable.getColumnCount()==3)
         {
             switch(jtable.convertColumnIndexToModel(column))
@@ -54,6 +56,26 @@ public class CellRenderer implements TableCellRenderer
                 break;
             }
         }
+        
+        label.setOpaque(true);
+        if(isSelected)
+        {
+            label.setBackground(Color.LIGHT_GRAY);
+        }
+        
+        if(ws.getTemp()>25&&ws.getHumidity()<20)
+        {
+            label.setBackground(Color.yellow);
+        }
+        else if(ws.getTemp()<0&&ws.getHumidity()<30)
+        {
+            label.setBackground(Color.BLUE);
+        }
+        else if(ws.getTemp()>=0&&ws.getTemp()<=25&&ws.getHumidity()>50)
+        {
+            label.setBackground(Color.GREEN);
+        }
+        
         c = label;
         return c;
     }
