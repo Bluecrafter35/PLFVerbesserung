@@ -9,10 +9,13 @@ import WeatherStation.WeatherStation;
 public class WeatherGUI extends javax.swing.JFrame {
 
     private TabelModel model  = new TabelModel();
+    private CellRenderer renderer = new CellRenderer();
     /** Creates new form WheaterGUI */
     public WeatherGUI() {
         initComponents();
+        model.updateColumns(4);
         this.tabWheater.setModel(model);
+        this.tabWheater.setDefaultRenderer(Object.class, renderer);
     }
 
     /** This method is called from within the constructor to

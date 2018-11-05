@@ -20,13 +20,8 @@ public class WeatherStation
     {
         this.place = place;
         this.sealevel = sealevel;
-        try{
-            setTemp(temp);
-            setHumidity(humidity);
-        }catch(Exception ex)
-        {
-            throw new Exception(ex.getMessage());
-        }
+        setTemp(temp);
+        setHumidity(humidity);
     }
 
     public void setTemp(float temp) throws Exception

@@ -24,6 +24,33 @@ public class TabelModel extends AbstractTableModel
         fireTableDataChanged();
     }
     
+    public void updateColumns(int numColumns)
+    {
+        colnames = new String[numColumns];
+        if(numColumns==4)
+        {
+                colnames[0]="Place";
+                colnames[1]="SeaLevel";
+                colnames[2]="Temperatur";
+                colnames[3]= "Humidity";
+        }
+        else if(numColumns==3)
+        {
+                colnames[0]="Place";
+                colnames[1]="Temperatur";
+                colnames[2]= "Humidity";
+        }
+        else
+        {
+            colnames[0]="???";
+        }
+    }
+    @Override
+    public String getColumnName(int column)
+    {
+        return colnames[column];
+    }
+    
     @Override
     public int getRowCount()
     {
